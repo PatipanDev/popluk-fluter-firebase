@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:popluk/auth.dart';
-import 'package:popluk/pages/home_page.dart';
+import 'package:popluk/services/auth.dart';
+import 'package:popluk/pages/index_page.dart';
 import 'package:popluk/pages/login_register_page.dart';
 
 class WidgetTree extends StatefulWidget {
@@ -17,7 +17,7 @@ class _WidgetTreeState extends State<WidgetTree> {
       stream: Auth().authStateChanges,
       builder: (context, snapshot){
         if(snapshot.hasData){
-          return HomePage();
+          return IndexPage();
         }else{
           return const LoginRegisterPage();
         }

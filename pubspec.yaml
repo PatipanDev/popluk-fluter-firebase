@@ -43,9 +43,14 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 flutter_icons:
-  android: "launcher_icon"
+  android: true
   ios: true
   image_path: "assets/icon/icon.png"
+  background_color: "#222222"  # พื้นหลังสีทึบสำหรับ Android
+  remove_alpha_ios: true
+  adaptive_icon_background: "#222222"  # พื้นหลังสีทึบสำหรับ Android Adaptive Icon
+  adaptive_icon_foreground: "assets/icon/icon.png"  # ไอคอนพื้นหน้า
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
