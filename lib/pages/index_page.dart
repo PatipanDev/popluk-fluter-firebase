@@ -60,6 +60,7 @@ class _IndexPageState extends State<IndexPage> {
         ],
       ),
       body: _pages[currentPageIndex],
+      
     );
   }
 }
