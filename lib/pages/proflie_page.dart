@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:popluk/services/auth.dart';
+import 'package:popluk/router.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -73,6 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ElevatedButton.icon(
               onPressed: (){
                 // TODO: ไปหน้าแก้ไขโปรไฟล์
+                context.push('/edit_profile');
               },
               icon: const Icon(Icons.edit),
               label: const Text('Edit Profile'),

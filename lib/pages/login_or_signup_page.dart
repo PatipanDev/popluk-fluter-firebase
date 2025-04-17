@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:popluk/theme/colors.dart';
 
 
-class SignInOrSignUpPage extends StatelessWidget {
-  const SignInOrSignUpPage({super.key});
+class LogInOrSignUpPage extends StatelessWidget {
+  const LogInOrSignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class SignInOrSignUpPage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       // TODO: ทำการเข้าสู่ระบบ
-   
+                      context.push('/login_page');
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.background,

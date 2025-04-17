@@ -18,7 +18,7 @@ class _WidgetTreeState extends State<WidgetTree> {
         if(snapshot.hasData){
           return IndexPage();
         }else{
-          return const SignInOrSignUpPage();
+          return const LogInOrSignUpPage();
         }
       },
       

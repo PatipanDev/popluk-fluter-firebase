@@ -69,4 +69,45 @@ class UserService {
       return e.toString();
     }
   }
+
+
+  Future<String?> logIn({
+    required String email,
+    required String password,
+  }) async {
+    try{
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email, 
+        password: password
+        );
+      if(userCredential.user == null){
+        return 'ไม่พบผู้ใช้';
+      }
+      return null;
+    }on FirebaseAuthException catch (e) {
+      if(e.code == 'user-not-found'){
+        return 'ไม่พบผู้ใช้งาน';
+      }else if(e.code == 'wrong-password'){
+        return 'รหัสผ่านไม่ถูกต้อง';
+      }
+      return e.message ?? 'เกิดข้อผิดพลาดในการเข้าสู่ระบบ';
+    }catch(e){
+      return e.toString();
+    }
+  }
+
+  Future<Map<String, dynamic>?> getUserProfile() async {
+    try {
+      final user = _auth.currentUser;
+      if (user == null) return null;
+
+      final doc = await _firestore.collection('users').doc(user.uid).get();
+      if (!doc.exists) return null;
+
+      return doc.data();
+    } catch (e) {
+      print('เกิดข้อผิดพลาดขณะโหลดข้อมูลผู้ใช้: $e');
+      return null;
+    }
+  }
 }

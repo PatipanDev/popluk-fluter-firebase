@@ -92,7 +92,7 @@ class _SignupQuestionsPageState extends State<SignupQuestionsPage> {
         context,
       ).showSnackBar(const SnackBar(content: Text('สมัครสมาชิกสำเร็จ')));
       // TODO: ไปหน้าหลัก
-      context.go('/home');
+      context.go('/');
     } else {
       ScaffoldMessenger.of(
         context,

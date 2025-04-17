@@ -36,8 +36,7 @@ class UserModel {
 
   // New fields
   final bool isOnline; // สถานะออนไลน์
-  final String
-  userLevel; // ระดับผู้ใช้ (เช่น "beginner", "intermediate", "advanced")
+  final String userLevel; // ระดับผู้ใช้ (เช่น "beginner", "intermediate", "advanced")
 
   UserModel({
     required this.id,
