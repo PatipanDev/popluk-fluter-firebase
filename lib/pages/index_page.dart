@@ -38,8 +38,8 @@ class _IndexPageState extends State<IndexPage> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
+            icon: Icon(Icons.view_carousel_outlined),
+            activeIcon: Icon(Icons.view_carousel),
             label: '',
           ),
           BottomNavigationBarItem(

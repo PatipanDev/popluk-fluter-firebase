@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:popluk/services/auth.dart';
 import 'package:popluk/pages/index_page.dart';
-import 'package:popluk/pages/login_register_page.dart';
-
+import 'package:popluk/pages/login_or_signup_page.dart';
 class WidgetTree extends StatefulWidget {
   const WidgetTree({ Key? key }) : super(key: key);
 
@@ -19,7 +18,7 @@ class _WidgetTreeState extends State<WidgetTree> {
         if(snapshot.hasData){
           return IndexPage();
         }else{
-          return const LoginRegisterPage();
+          return const SignInOrSignUpPage();
         }
       },
       
