@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1059906582670",
+    "project_id": "popluk-490e9",
+    "storage_bucket": "popluk-490e9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059906582670:android:5e69bfb2f2e19fb26831df",
+        "android_client_info": {
+          "package_name": "com.example.popluk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnCGq0mU1btKeMFK3TFwsPBWfoe8xzE-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
