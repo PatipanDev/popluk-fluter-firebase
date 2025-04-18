@@ -18,6 +18,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final TextEditingController jobTitleController = TextEditingController();
   final TextEditingController educationController = TextEditingController();
   final TextEditingController birthDateController = TextEditingController();
+  
 
   bool isLoading = true;
 
