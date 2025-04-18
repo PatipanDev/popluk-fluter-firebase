@@ -3,10 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:popluk/firebase_options.dart';
 import 'package:popluk/theme/app_theme.dart';
 import 'package:popluk/router.dart';
+import 'package:provider/provider.dart';
+import 'package:popluk/providers/user_provider.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => UserProvider()..loadUser()),
+      // เพิ่ม Provider อื่น ๆ ได้ตรงนี้
+    ],
+    child: const MyApp(),
+  ),
+  );
 }
 
 class MyApp extends StatelessWidget {

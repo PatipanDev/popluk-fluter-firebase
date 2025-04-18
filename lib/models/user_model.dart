@@ -67,6 +67,65 @@ class UserModel {
     required this.userLevel,
   });
 
+  // Add copyWith method
+  UserModel copyWith({
+    String? id,
+    String? fullName,
+    String? email,
+    String? phoneNumber,
+    String? gender,
+    DateTime? birthDate,
+    List<String>? profilePictures,
+    String? bio,
+    List<String>? interests,
+    String? jobTitle,
+    String? education,
+    String? location,
+    double? latitude,
+    double? longitude,
+    String? lookingForGender,
+    int? minPreferredAge,
+    int? maxPreferredAge,
+    double? preferredDistanceKm,
+    List<String>? likedUserIds,
+    List<String>? likedByUserIds,
+    List<String>? matchedUserIds,
+    List<String>? blockedUserIds,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    bool? isOnline,
+    String? userLevel,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      fullName: fullName ?? this.fullName,
+      email: email ?? this.email,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      gender: gender ?? this.gender,
+      birthDate: birthDate ?? this.birthDate,
+      profilePictures: profilePictures ?? this.profilePictures,
+      bio: bio ?? this.bio,
+      interests: interests ?? this.interests,
+      jobTitle: jobTitle ?? this.jobTitle,
+      education: education ?? this.education,
+      location: location ?? this.location,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      lookingForGender: lookingForGender ?? this.lookingForGender,
+      minPreferredAge: minPreferredAge ?? this.minPreferredAge,
+      maxPreferredAge: maxPreferredAge ?? this.maxPreferredAge,
+      preferredDistanceKm: preferredDistanceKm ?? this.preferredDistanceKm,
+      likedUserIds: likedUserIds ?? this.likedUserIds,
+      likedByUserIds: likedByUserIds ?? this.likedByUserIds,
+      matchedUserIds: matchedUserIds ?? this.matchedUserIds,
+      blockedUserIds: blockedUserIds ?? this.blockedUserIds,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      isOnline: isOnline ?? this.isOnline,
+      userLevel: userLevel ?? this.userLevel,
+    );
+  }
+
   // Convert Firestore data into a UserModel
   factory UserModel.fromFirestore(DocumentSnapshot doc) {
     Map data = doc.data() as Map;

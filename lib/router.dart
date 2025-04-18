@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 // pages
-import 'package:popluk/pages/login_page.dart';
-import 'package:popluk/pages/signup_questions_page.dart';
-import 'package:popluk/pages/login_or_signup_page.dart';
-import 'package:popluk/pages/index_page.dart';
-import 'package:popluk/pages/profile/edit_profile_page.dart';
+import 'package:popluk/screens/login_page.dart';
+import 'package:popluk/screens/signup_questions_page.dart';
+import 'package:popluk/screens/login_or_signup_page.dart';
+import 'package:popluk/screens/index_page.dart';
+import 'package:popluk/screens/profile/edit_profile_page.dart';
 
 class AuthNotifier extends ChangeNotifier {
   AuthNotifier() {
@@ -42,26 +42,46 @@ class AppRouter {
       return null;
     },
     routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => IndexPage(),
-      ),
+      GoRoute(path: '/', builder: (context, state) => IndexPage()),
       GoRoute(
         path: '/loginorsignup_page',
         builder: (context, state) => LogInOrSignUpPage(),
       ),
-      GoRoute(
-        path: '/login_page',
-        builder: (context, state) => LoginPage(),
-      ),
+      GoRoute(path: '/login_page', builder: (context, state) => LoginPage()),
       GoRoute(
         path: '/signup_page',
         builder: (context, state) => SignupQuestionsPage(),
       ),
-       GoRoute(
+      GoRoute(
         path: '/edit_profile',
-        builder: (context, state) => EditProfilePage(),
+        builder: (context, state) => const EditProfilePage(),
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            transitionDuration: const Duration(milliseconds: 300),
+            child: const EditProfilePage(),
+            transitionsBuilder: _slideTransition, // ใช้ transitionsBuilder
+          );
+        },
       ),
     ],
   );
+}
+
+
+
+// ฟังก์ชันแอนิเมชั่นสำหรับการสไลด์
+Widget _slideTransition(
+  BuildContext context,
+  Animation<double> animation,
+  Animation<double> secondaryAnimation,
+  Widget child,
+) {
+  const begin = Offset(1.0, 0.0); // สไลด์จากขวา
+  const end = Offset.zero;
+  const curve = Curves.easeInOut; // ทำให้แอนิเมชันช้าลง
+
+  var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+  var offsetAnimation = animation.drive(tween);
+
+  return SlideTransition(position: offsetAnimation, child: child);
 }

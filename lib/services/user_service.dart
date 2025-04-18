@@ -70,44 +70,68 @@ class UserService {
     }
   }
 
-
   Future<String?> logIn({
     required String email,
     required String password,
   }) async {
-    try{
+    try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: email, 
-        password: password
-        );
-      if(userCredential.user == null){
+        email: email,
+        password: password,
+      );
+      if (userCredential.user == null) {
         return 'ไม่พบผู้ใช้';
       }
       return null;
-    }on FirebaseAuthException catch (e) {
-      if(e.code == 'user-not-found'){
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
         return 'ไม่พบผู้ใช้งาน';
-      }else if(e.code == 'wrong-password'){
+      } else if (e.code == 'wrong-password') {
         return 'รหัสผ่านไม่ถูกต้อง';
       }
       return e.message ?? 'เกิดข้อผิดพลาดในการเข้าสู่ระบบ';
-    }catch(e){
+    } catch (e) {
       return e.toString();
     }
   }
 
-  Future<Map<String, dynamic>?> getUserProfile() async {
+  //ดึงข้อมูลมาโชว์ที่หน้าโปรไฟล์
+  Future<UserModel?> getUserProfile() async {
     try {
       final user = _auth.currentUser;
       if (user == null) return null;
 
       final doc = await _firestore.collection('users').doc(user.uid).get();
       if (!doc.exists) return null;
+      // return UserModel.fromFirestore(doc);
 
-      return doc.data();
+      return UserModel.fromFirestore(doc); // ✅ ใช้โมเดลที่คุณมี
     } catch (e) {
       print('เกิดข้อผิดพลาดขณะโหลดข้อมูลผู้ใช้: $e');
       return null;
+    }
+  }
+
+  // ฟังก์ชันนี้ใช้ในการอัปเดตข้อมูลผู้ใช้
+  Future<void> updateUserProfile(UserModel updatedUser) async {
+    try {
+      final user = _auth.currentUser;
+      if (user == null) return;
+
+      final userRef = _firestore.collection('users').doc(user.uid);
+
+      // อัปเดตข้อมูลใน Firestore
+      await userRef.update({
+        'fullName': updatedUser.fullName,
+        'bio': updatedUser.bio,
+        'jobTitle': updatedUser.jobTitle,
+        'education': updatedUser.education,
+        'birthDate': updatedUser.birthDate, // อัปเดตข้อมูลวันเกิด
+      });
+
+      print("ข้อมูลผู้ใช้ถูกอัปเดตเรียบร้อย");
+    } catch (e) {
+      print("เกิดข้อผิดพลาดขณะอัปเดตข้อมูลผู้ใช้: $e");
     }
   }
 }

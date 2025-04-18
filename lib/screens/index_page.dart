@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:popluk/pages/home_page.dart';
-import 'package:popluk/pages/messages_page.dart';
-import 'package:popluk/pages/notifications_page.dart';
-import 'package:popluk/pages/proflie_page.dart';
+import 'package:popluk/screens/home_page.dart';
+import 'package:popluk/screens/messages_page.dart';
+import 'package:popluk/screens/notifications_page.dart';
+import 'package:popluk/screens/proflie_page.dart';
 import 'package:popluk/theme/colors.dart';
 
 class IndexPage extends StatefulWidget {
